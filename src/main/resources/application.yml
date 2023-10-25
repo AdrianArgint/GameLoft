@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gameloft
+    username: postgres
+    password: postgres
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      poolName: Hikari
+  liquibase:
+    change-log: classpath:/db/changelog/master.xml
