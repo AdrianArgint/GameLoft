@@ -5,8 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
     <!-- Include changelog files -->
-<!--    <include file="changelogs/changelog-1.xml"/>-->
-<!--    <include file="changelogs/changelog-2.xml"/>-->
+    <include file="db/changelog/clan.xml"/>
+    <include file="db/changelog/campaign.xml"/>
+    <include file="db/changelog/player.xml"/>
+    <include file="db/changelog/inventory_item.xml"/>
+    <include file="db/changelog/device.xml"/>
+    <include file="db/changelog/load_samples.xml"/>
+<!--    <include file="changelogs/load_samples.xml"/>-->
     <!-- Add more changelog files as needed -->
 
 </databaseChangeLog>

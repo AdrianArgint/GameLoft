@@ -1,0 +1,67 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="createPlayerTable" author="adrian_argint">
+        <createTable tableName="player">
+            <column name="player_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="credential" type="varchar(255)"/>
+            <column name="created" type="timestamp"/>
+            <column name="modified" type="timestamp"/>
+            <column name="last_session" type="timestamp"/>
+            <column name="total_spent" type="numeric"/>
+            <column name="total_refund" type="numeric"/>
+            <column name="total_transactions" type="integer"/>
+            <column name="last_purchase" type="timestamp"/>
+            <column name="level" type="integer"/>
+            <column name="xp" type="integer"/>
+            <column name="total_playtime" type="integer"/>
+            <column name="country" type="varchar(255)"/>
+            <column name="language" type="varchar(255)"/>
+            <column name="birthdate" type="timestamp"/>
+            <column name="gender" type="varchar(10)"/>
+            <column name="clan_id" type="integer"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="addPlayerClanForeignKey" author="adrian_argint">
+        <addForeignKeyConstraint baseTableName="player"
+                                 baseColumnNames="clan_id"
+                                 referencedTableName="clan"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_player_clan"/>
+    </changeSet>
+
+    <changeSet id="createCampaignPlayerTable" author="adrian_argint">
+        <createTable tableName="campaign_player">
+            <column name="campaign_id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="player_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="addCampaignPlayerCampaignForeignKey" author="adrian_argint">
+        <addForeignKeyConstraint
+                baseTableName="campaign_player"
+                baseColumnNames="campaign_id"
+                referencedTableName="campaign"
+                referencedColumnNames="id"
+                constraintName="fk_campaign_player_campaign"
+        />
+    </changeSet>
+    <changeSet id="addCampaignPlayerPlayerForeignKey" author="adrian_argint">
+        <addForeignKeyConstraint
+                baseTableName="campaign_player"
+                baseColumnNames="player_id"
+                referencedTableName="player"
+                referencedColumnNames="player_id"
+                constraintName="fk_campaign_player_player"
+        />
+    </changeSet>
+
+
+</databaseChangeLog>

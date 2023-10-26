@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="createInventoryItemTable" author="adrian_argint">
+        <createTable tableName="inventory_item">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="quantity" type="integer"/>
+            <column name="player_id" type="uuid"/>
+            <!-- Add more inventory item attributes here -->
+        </createTable>
+    </changeSet>
+    <changeSet id="addInventoryItemPlayerForeignKey" author="adrian_argint">
+        <addForeignKeyConstraint
+                baseTableName="inventory_item"
+                baseColumnNames="player_id"
+                referencedTableName="player"
+                referencedColumnNames="player_id"
+                constraintName="fk_inventory_item_player"
+        />
+    </changeSet>
+
+</databaseChangeLog>

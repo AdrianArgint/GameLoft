@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="createDeviceTable" author="adrian_argint">
+        <createTable tableName="device">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="model" type="varchar(255)"/>
+            <column name="carrier" type="varchar(255)"/>
+            <column name="firmware" type="varchar(255)"/>
+            <column name="player_id" type="uuid"/>
+            <!-- Add more device attributes here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="addDevicePlayerForeignKey" author="adrian_argint">
+        <addForeignKeyConstraint
+                baseTableName="device"
+                baseColumnNames="player_id"
+                referencedTableName="player"
+                referencedColumnNames="player_id"
+                constraintName="fk_device_player"
+        />
+    </changeSet>
+
+</databaseChangeLog>
