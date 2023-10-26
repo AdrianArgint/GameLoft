@@ -14,11 +14,18 @@ import java.util.Set;
 @Table(name = "campaign")
 public class Campaign {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "campaignSequenceGenerator")
+    @SequenceGenerator(
+            name = "campaignSequenceGenerator",
+            sequenceName = "campaign_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
-    private String campaignName;
+    @Column(name = "campaign_name")
+    private String name;
 
-    @ManyToMany(mappedBy = "activeCampaigns")
-    private Set<Player> players;
+//    @ManyToMany(mappedBy = "activeCampaigns")
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    private Set<Player> players;
 }

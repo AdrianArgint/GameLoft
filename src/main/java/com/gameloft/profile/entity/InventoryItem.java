@@ -16,10 +16,11 @@ public class InventoryItem {
     @GeneratedValue
     private Long id;
 
-    private String itemName;
-    private int itemQuantity;
+    private String name;
+    private Long quantity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
     private Player player;
 
 }

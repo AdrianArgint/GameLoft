@@ -8,5 +8,6 @@ public enum GenderEnum {
     MALE("male"), FEMALE("female"), OTHER("other");
 
     @Getter
-    private final String externalName;
+    private final String name;
+
 }

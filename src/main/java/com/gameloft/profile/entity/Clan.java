@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Clan {
     @Id
     @GeneratedValue
-    private String id;
+    private Long id;
 
     @Column
     private String name;

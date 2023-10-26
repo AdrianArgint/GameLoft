@@ -19,6 +19,7 @@ public class Device {
     private String carrier;
     private String firmware;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
     private Player player;
 }
