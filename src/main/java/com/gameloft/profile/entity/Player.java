@@ -6,6 +6,7 @@ import com.gameloft.profile.entity.enums.GenderEnum;
 import com.gameloft.profile.service.dto.CampaignDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "player")
+@Builder
 public class Player {
     @Id
     @GeneratedValue

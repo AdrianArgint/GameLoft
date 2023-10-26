@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -36,7 +37,9 @@ public class PlayerService {
 
         CampaignDTO campaignDTO = activeCampaignService.getActiveCampaign();
 
-        if (campaignDTO.getEnabled() && doesPlayerMatch(player, campaignDTO.getMatchers())) {
+        if (!Objects.isNull(campaignDTO) &&
+            Boolean.TRUE.equals(campaignDTO.getEnabled()) &&
+            doesPlayerMatch(player, campaignDTO.getMatchers())) {
             Campaign campaign = campaignRepository.findByName(campaignDTO.getName())
                     .orElseGet(() -> {
                         var campaignObject = campaignMapper.toEntity(campaignDTO);
@@ -51,6 +54,10 @@ public class PlayerService {
     }
 
     private boolean doesPlayerMatch(Player player, Map<String, Map<String, Object>> matchers) {
+        if (Objects.isNull(matchers)) {
+            return true;
+        }
+
         for (Map.Entry<String, Map<String, Object>> entry : matchers.entrySet()) {
             String criterion = entry.getKey();
             Map<String, Object> params = entry.getValue();
