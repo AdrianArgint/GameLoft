@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -16,5 +18,6 @@ public class Clan {
     private Long id;
 
     @Column
+    @NotNull
     private String name;
 }

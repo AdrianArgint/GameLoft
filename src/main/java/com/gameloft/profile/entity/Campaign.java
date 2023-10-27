@@ -27,7 +27,4 @@ public class Campaign {
     @Column(name = "campaign_name")
     private String name;
 
-//    @ManyToMany(mappedBy = "activeCampaigns")
-//    @LazyCollection(LazyCollectionOption.FALSE)
-//    private Set<Player> players;
 }

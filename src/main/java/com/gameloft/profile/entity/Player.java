@@ -11,10 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Data
@@ -78,23 +75,25 @@ public class Player {
     public List<String> getValuesForKey(String key) {
         List<String> values = new ArrayList<>();
 
-        if ("level".equals(key)) {
+        if ("level".equals(key) && !Objects.isNull(level)) {
             values.add(String.valueOf(level));
-        } else if ("country".equals(key)) {
+        } else if ("country".equals(key) && !Objects.isNull(country)) {
             values.add(country);
-        } else if ("items".equals(key)) {
-            values.addAll(inventory.stream().map(InventoryItem::getName).toList());
-        } else if ("total_spent".equals(key)) {
+        } else if ("items".equals(key) && !Objects.isNull(inventory)) {
+            values.addAll(
+                    Optional.ofNullable(inventory).orElse(List.of())
+                            .stream().map(InventoryItem::getName).toList());
+        } else if ("total_spent".equals(key) && !Objects.isNull(totalSpent)) {
             values.add(String.valueOf(totalSpent));
-        } else if ("total_refund".equals(key)) {
+        } else if ("total_refund".equals(key) && !Objects.isNull(totalRefund)) {
             values.add(String.valueOf(totalRefund));
-        } else if ("total_transactions".equals(key)) {
+        } else if ("total_transactions".equals(key) && !Objects.isNull(totalTransactions)) {
             values.add(String.valueOf(totalTransactions));
-        } else if ("language".equals(key)) {
+        } else if ("language".equals(key) && !Objects.isNull(language)) {
             values.add(language);
-        } else if ("gender".equals(key)) {
+        } else if ("gender".equals(key) && !Objects.isNull(gender)) {
             values.add(gender.getName());
-        } else if ("clan".equals(key)) {
+        } else if ("clan".equals(key) && !Objects.isNull(clan)) {
             values.add(clan.getName());
         }
 
